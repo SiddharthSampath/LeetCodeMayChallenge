@@ -1,0 +1,37 @@
+You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
+
+Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+
+You are given an API bool isBadVersion(version) which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+
+Example:
+
+Given n = 5, and version = 4 is the first bad version.
+
+call isBadVersion(3) -> false
+call isBadVersion(5) -> true
+call isBadVersion(4) -> true
+
+Then 4 is the first bad version. 
+
+
+The first approach which comes to mind is a linear scan of the numbers starting from the first version
+Go through every number, stop at the first one which is a bad version.
+On average this requires n calls to the API.
+Hence time complexity : O(n) space comlexity : O(1)
+
+As the versions are numbered from 1 to n, it is possible to use binary search on the numbers from 1 to n.
+The classic binary search algo has to be modified a bit.
+Algo
+1. low = 1 high = n - 1
+2. have a while loop with the condition low <= high. (the condition should be <= and not only < because there may be a case where you find the bad version only when low and high converge to the same number). If you think, I would never have thought of that if I had not thought of such an example, then think of it think of it this way. A corner case for this algorithm is when there is only 1 version. So low = high = 1. Now only if the condition is true for the first iteration would you check if that version is good or bad and return the answer).
+3. mid = (low + high)//2
+4. check if mid is a bad version
+5. if it is:
+6. check if the version right before it is a bad version. If the version right before it is a bad version, then set low = mid - 1 to explore the left half of the array to find the first bad version.
+7. if version before it is good, mid is your answer 
+8. if mid is a good version, explore the right of your array. low = mid + 1
+9. if you exit the while loop without returning a value, all versions are good. return -1
+
+Time Complexity : O(log n)
+Space Complexity : O(1)
