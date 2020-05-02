@@ -1,0 +1,34 @@
+You're given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.
+
+The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A".
+
+Example 1:
+
+Input: J = "aA", S = "aAAbbbb"
+Output: 3
+Example 2:
+
+Input: J = "z", S = "ZZ"
+Output: 0
+Note:
+
+S and J will consist of letters and have length at most 50.
+The characters in J are distinct.
+
+
+The naive solution which comes to mind is iterate over all the characters in S, check if each character is in J.
+If it is, increment a jewel counter. Return the jewel counter after iterating over all characters in S
+Time Complexity : O(S*J), Space :O(1)
+
+The solution is too slow, so we can make a space time trade off. We can use a hash table to store the characters in J.
+Accessing elements in a hash table with no collision is O(1).
+
+Algo:
+1. Create a jewelsHash dictionary
+2. Iterate over each character in J and add it to jewelsHash, mapping it to True(the value you are mapping to doesn't really matter as you never use it)
+3. Iterate over each character in S
+4. Check if the character is in jewelsHash (O(1) operation)
+5. If it is increment a jewel counter.
+6. Return jewel counter after the loop
+
+Time Complexity : O(S) Space Complexity : O(J) 
