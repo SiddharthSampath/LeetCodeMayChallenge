@@ -1,0 +1,17 @@
+Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.
+
+Each letter in the magazine string can only be used once in your ransom note.
+
+Note:
+You may assume that both strings contain only lowercase letters.
+
+canConstruct("a", "b") -> false
+canConstruct("aa", "ab") -> false
+canConstruct("aa", "aab") -> true
+
+A problem very similar to problem 2. Hash table approach.
+Construct a hash table of letters of magazine where the hash table contains the letters which occur in the magazine and their frequency.
+Loop through the characters in the ransom note and check if they are present in the hash table.
+If they are and the frequency is greater than 0, decrement frequency by 1 and move to the next character.
+If not, return False
+If the end of the string is reached successfully, return True
