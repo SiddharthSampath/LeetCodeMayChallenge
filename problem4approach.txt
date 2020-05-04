@@ -1,0 +1,44 @@
+'''
+Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+
+ 
+
+Example 1:
+
+Input: 5
+Output: 2
+Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
+ 
+
+Example 2:
+
+Input: 1
+Output: 0
+Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
+ 
+
+Note:
+
+The given integer is guaranteed to fit within the range of a 32-bit signed integer.
+You could assume no leading zero bit in the integer’s binary representation.
+'''
+
+Bit manipulation problem
+
+Naive approach : find the binary of the number, either by using the native Python function, bin or by using a simple while loop.
+for each bit, find the complement, and multiply that with the 2^position of the number
+return the number. Time Complexity : O(log(n)), Space : O(log(n))
+
+Using XOR
+XORing a number with 1, flips the bit of the number.
+if we XOR every bit of a number with 1, we get the number with flipped bits
+Using a simple for loop which iterates which runs for iterations = numberofbits,
+we can xor the num with 1 rotated i time : num = num ^ (1 << i)
+so what happens here:
+    Ex: 26
+    26 ^ 1 (bin rep : 11010 ^ 1 = 11011 = 27)  
+    27 ^ 2 (bin rep : 11011 ^ 10 = 11001 = 25)
+    25 ^ 4 (bin rep : 11001 ^ 100 = 11101 = 29)
+    29 ^ 8 (bin rep : 11101 ^ 1000 = 10101 = 21)
+    21 ^ 16(bin rep : 10101 ^ 10000 = 00101 = 5)
+Time Complexity : O(log(n) Space : O(1)
