@@ -1,0 +1,25 @@
+'''
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+Examples:
+
+s = "leetcode"
+return 0.
+
+s = "loveleetcode",
+return 2.
+'''
+
+Another classic hash table problem.
+
+Naive approach - have 2 nested for loops and check if each letter is repeated in the string or not
+Time Complexity : O(n^2) Space : O(1)
+
+Hash table approach:
+
+Store the letter with their frequencies in a hash table.
+Iterate over the string once more, and when a character with frequency 1 is reached, return the index of the character.
+If it is never reached return -1
+
+
+Time : O(n) Space : O(min(n,A)) A is the set of Alphabets
